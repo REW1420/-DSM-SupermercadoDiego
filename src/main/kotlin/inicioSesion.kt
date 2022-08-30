@@ -1,7 +1,7 @@
 class Login {
     //Credenciales Admin
-    var adminUsuario :String = "admin"
-    var adminContrasena :String = "admin123"
+    var adminUsuario :String = ""
+    var adminContrasena :String = ""
 
     //Credenciales Vendedor
     var vendedorUsuario:String = "vendedor"

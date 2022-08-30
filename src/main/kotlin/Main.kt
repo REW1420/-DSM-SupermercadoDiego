@@ -37,6 +37,7 @@ fun main(args: Array<String>) {
             } while (credenciales.adminUsuario != LecturaUsuario || credenciales.adminContrasena != LecturaContrasena)
 
             do {
+
                 menuPrincipal(credenciales.adminUsuario)
                 opcion = readln()!!.toInt()
 
@@ -45,16 +46,23 @@ fun main(args: Array<String>) {
                     do {
 
                         //funcion de venta
-                        nuevaVenta(venta.producto,venta.precio);
+                        nuevaVenta(venta.productos,venta.precio);
+
+                        println("Menu\n"+"1. Realizar venta"+"\n0- Regresar")
 
                         opcionSubMenu = readln()!!.toInt()
+
+                        if (opcionSubMenu==1){
+                            realizarVenta(venta.productos,venta.precio,venta.cantidad,venta.id,venta.ventaCantidad)
+
+                        }
                     }while (opcionSubMenu!=0)
                 };
                 if (opcion == 2) {
                     do {
 
                         //funcion de inventario
-                       consultarInventario(inventario.producto,inventario.cantidad);
+                       consultarInventario(venta.productos,venta.cantidad);
 
                         opcionSubMenu = readln()!!.toInt()
                     }while (opcionSubMenu!=0)
