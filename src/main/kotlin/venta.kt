@@ -1,6 +1,6 @@
 class venta {
 
-    var productos: MutableList<String> = mutableListOf("producto1","producto2","producto3","producto4","producto5","producto6","producto7","producto8","producto9","producto10")
+    var productos: MutableList<String> = mutableListOf("dulce","queso procesado","jamon","arroz","jabon unidad","mentas","requeson","salchichas","gel cabello","detergente")
     var precio: MutableList<Double> = mutableListOf(0.10,5.00,3.00,0.50,0.80,0.30,2.25,2.75,1.80,3.25)
     var cantidad: MutableList<Int> = mutableListOf(30,30,5,60,100,500,20,25,30,180)
     var id : Int = 0
@@ -9,18 +9,20 @@ class venta {
 
 }fun nuevaVenta(productos: List<String>, precio: List<Double>){
     var j:Int = 1
-    println("ID  Productos  Precio")
+    println("ID      Productos        Precio")
 
-        for ((i, productos) in productos.withIndex()){
+    for ((i, productos) in productos.withIndex()){
 
-            println(""+j+" "+productos+" - "+"$"+precio[i])
-            j++
-        }
+        println(""+j+"      "+productos+"    - "+"    $"+precio[i])
+        j++
+    }
 }fun realizarVenta(productos: List<String>, precio: List<Double>,cantidad: List<Int>,id:Int,ventaCantidad:Int){
     var id: Int=0
     var ventaCantidad: Int = 0
     var opcion:Int = 0
     var total:Double = 0.0
+    var ventaTotal: Int = 0
+
 
     //listas para el recivo
     var recivoProductos: MutableList<String> = mutableListOf()
@@ -28,7 +30,6 @@ class venta {
     var recivoTotal: MutableList<Double> = mutableListOf()
 
     do {
-
 
         println("Ingrese el ID del producto que quiere vender")
         id = readln().toInt()
@@ -44,6 +45,11 @@ class venta {
             ventaCantidad = readln().toInt()
         }
 
+        while (ventaCantidad <= 0) {
+            println(productos[id] + " No es posible vender 0 o cantidades negativas: " + cantidad[id] + " ¿cuánto desea vender?")
+            ventaCantidad = readln().toInt()
+        }
+
         //proceso para calcular el total de la venta y asi guardalor en la lista
 
         total = (precio[id]*ventaCantidad)
@@ -52,20 +58,22 @@ class venta {
         recivoTotal.add(total)
 
 
-       println("1. Agregar Producto"+"2. Imprimir recivo"+"3. Regresar");
+        println("1. Agregar Producto"+" 2. Impair recibo"+" 3. Regresar");
         opcion= readln().toInt()
 
         //imprecion del recivo
         if (opcion==2){
             println("Producto   Cantidad   Precio")
 
-        for ( (x, recivoCantidad) in recivoCantidad.withIndex()){
-                
-            println(" "+recivoProductos[x] +" "+recivoCantidad+" "+recivoTotal[x])
+
+            for ( (x, recivoCantidad) in recivoCantidad.withIndex()){
+
+                println(recivoProductos[x] +"          "+   recivoCantidad+"        "+   recivoTotal[x] )
 
 
-        }
-
+            }
+            println("Venta total")
+            break
 
         }
 
