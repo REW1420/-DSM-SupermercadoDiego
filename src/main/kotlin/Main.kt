@@ -3,13 +3,12 @@ fun main(args: Array<String>) {
     //Variables
     var opcion: Int = 0
     var opcionSubMenu: Int = 0
-    var opcionContrasena: Int = 0
-    var LecturaUsuario: String = ""
-    var LecturaContrasena: String = ""
+
+
 
     //objeto de la clase
-    var credenciales = Login()
-    var venta = venta()
+    val credenciales = Login()
+    val venta = venta()
     var inventario = inventario()
 
     //Ciclo para el saludo y opcines iniciales
@@ -27,23 +26,23 @@ fun main(args: Array<String>) {
 
 
                 println("Usuario: ")
-                LecturaUsuario = readln()
+                credenciales.LecturaUsuario = readln()
                 println("Contraseña")
-                LecturaContrasena = readln()
+                credenciales.LecturaContrasena = readln()
                 //se muentra un mensaje error por si la contraseña esta mal, si no lo esta entra el do/while del menu
 
-                if ((credenciales.adminUsuario != LecturaUsuario || credenciales.adminContrasena != LecturaContrasena) && (credenciales.vendedorUsuario != LecturaUsuario && credenciales.vendedorContrasena != LecturaContrasena) ) {
+                if ((credenciales.adminUsuario != credenciales.LecturaUsuario || credenciales.adminContrasena != credenciales.LecturaContrasena) && (credenciales.vendedorUsuario != credenciales.LecturaUsuario && credenciales.vendedorContrasena != credenciales.LecturaContrasena) ) {
                     println("Error en contraseña y/o usuario\n" + "Ingrese denuevo")
                 }
 
-            } while ( (credenciales.adminUsuario!=LecturaUsuario && credenciales.adminContrasena != LecturaContrasena) && (credenciales.vendedorUsuario != LecturaUsuario && credenciales.vendedorContrasena != LecturaContrasena))
+            } while ( (credenciales.adminUsuario!= credenciales.LecturaUsuario && credenciales.adminContrasena != credenciales.LecturaContrasena) && (credenciales.vendedorUsuario != credenciales.LecturaUsuario && credenciales.vendedorContrasena != credenciales.LecturaContrasena))
 
-            if (credenciales.adminUsuario == LecturaUsuario && credenciales.adminUsuario == LecturaUsuario) {
+            if (credenciales.adminUsuario == credenciales.LecturaUsuario && credenciales.adminContrasena == credenciales.LecturaContrasena) {
 
                 do {
 
                     menuPrincipal(credenciales.adminUsuario)
-                    opcion = readln()!!.toInt()
+                    opcion = readln().toInt()
 
 
                     if (opcion == 1) {
@@ -54,7 +53,7 @@ fun main(args: Array<String>) {
 
                             println("Menu\n" + "1. Realizar venta" + "\n0- Regresar")
 
-                            opcionSubMenu = readln()!!.toInt()
+                            opcionSubMenu = readln().toInt()
 
                             if (opcionSubMenu == 1) {
                                 realizarVenta(
@@ -74,7 +73,7 @@ fun main(args: Array<String>) {
                             //funcion de inventario
                             consultarInventario(venta.productos, venta.cantidad);
 
-                            opcionSubMenu = readln()!!.toInt()
+                            opcionSubMenu = readln().toInt()
                         } while (opcionSubMenu != 0)
                     };
                     if (opcion == 3) {
@@ -85,37 +84,34 @@ fun main(args: Array<String>) {
                             credenciales.adminContrasena,
                             credenciales.adminUsuario,
                             credenciales.vendedorContrasena,
-                            credenciales.vendedorUsuario
+                            credenciales.vendedorUsuario,
+                            credenciales.invitadoUsuario,
+                            credenciales.invitadoContrasena
+
                         );
 
 
-                        opcionSubMenu = readln()!!.toInt()
+                        opcionSubMenu = readln().toInt()
 
                         if (opcionSubMenu == 1) {
-                            println("Cambiar credenciales de Admin")
-                            println("Ingrese nuevo usuario")
-                            LecturaUsuario = readln()!!
-                            credenciales.adminUsuario = LecturaUsuario
-                            println("Ingrese nueva contraseña")
-                            LecturaContrasena = readln()!!
-                            credenciales.adminContrasena = LecturaContrasena
-
-                            println("Contraseña actualizada\n" + "Por favor, ingrese denuevo\n" + "10-Ok")
-                            opcionContrasena = readln().toInt()
-
+                           credenciales.cambiarContrasenaAdmin()
+                        };if (opcionSubMenu == 2){
+                            credenciales.cambiarContrasenaVendedor()
+                        };if (opcionSubMenu == 3){
+                            credenciales.cambiarContrasenaInvitado()
                         }
 
 
                     }
-                } while (opcion != 4 && opcionContrasena != 10)
+                } while (opcion != 4 && credenciales.opcionContrasena != 10)
 
             }
-        };if ( credenciales.vendedorUsuario == LecturaUsuario && credenciales.vendedorContrasena == LecturaContrasena){
+        };if ( credenciales.vendedorUsuario == credenciales.LecturaUsuario && credenciales.vendedorContrasena == credenciales.LecturaContrasena){
 
 
             do {
                 menuVendedor(credenciales.vendedorUsuario)
-                opcion = readln()!!.toInt()
+                opcion = readln().toInt()
 
 
                 if (opcion == 1) {
@@ -146,7 +142,7 @@ fun main(args: Array<String>) {
                         //funcion de inventario
                         consultarInventario(venta.productos, venta.cantidad);
 
-                        opcionSubMenu = readln()!!.toInt()
+                        opcionSubMenu = readln().toInt()
                     } while (opcionSubMenu != 0)
                 };
 
