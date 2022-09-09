@@ -4,8 +4,8 @@ class Login {
     var adminContrasena :String = ""
 
     //Credenciales Vendedor
-    var vendedorUsuario:String = "vendedor"
-    var vendedorContrasena:String = "vendedor123"
+    var vendedorUsuario:String = "ve"
+    var vendedorContrasena:String = "ve"
 
 
 

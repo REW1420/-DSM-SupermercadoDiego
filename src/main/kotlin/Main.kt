@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
             "Bienvenido al sistema Nombre Supermercado Diego\n"
         )
         //funcion para el primer menu
-            menuInicio();
+        menuInicio();
         opcion = readln().toInt()
 
         if (opcion == 1) {
@@ -31,72 +31,135 @@ fun main(args: Array<String>) {
                 println("Contraseña")
                 LecturaContrasena = readln()
                 //se muentra un mensaje error por si la contraseña esta mal, si no lo esta entra el do/while del menu
-                if (credenciales.adminUsuario != LecturaUsuario || credenciales.adminContrasena != LecturaContrasena) {
-                    println("Erro en contraseña y/o usuario\n" + "Ingrese denuevo")
+
+                if ((credenciales.adminUsuario != LecturaUsuario || credenciales.adminContrasena != LecturaContrasena) && (credenciales.vendedorUsuario != LecturaUsuario && credenciales.vendedorContrasena != LecturaContrasena) ) {
+                    println("Error en contraseña y/o usuario\n" + "Ingrese denuevo")
                 }
-            } while (credenciales.adminUsuario != LecturaUsuario || credenciales.adminContrasena != LecturaContrasena)
 
-            do {
+            } while ( (credenciales.adminUsuario!=LecturaUsuario && credenciales.adminContrasena != LecturaContrasena) && (credenciales.vendedorUsuario != LecturaUsuario && credenciales.vendedorContrasena != LecturaContrasena))
 
-                menuPrincipal(credenciales.adminUsuario)
-                opcion = readln()!!.toInt()
+            if (credenciales.adminUsuario == LecturaUsuario && credenciales.adminUsuario == LecturaUsuario) {
+
+                do {
+
+                    menuPrincipal(credenciales.adminUsuario)
+                    opcion = readln()!!.toInt()
 
 
-                if (opcion==1){
-                    do {
+                    if (opcion == 1) {
+                        do {
 
-                        //funcion de venta
-                        nuevaVenta(venta.productos,venta.precio);
+                            //funcion de venta
+                            nuevaVenta(venta.productos, venta.precio);
 
-                        println("Menu\n"+"1. Realizar venta"+"\n0- Regresar")
+                            println("Menu\n" + "1. Realizar venta" + "\n0- Regresar")
+
+                            opcionSubMenu = readln()!!.toInt()
+
+                            if (opcionSubMenu == 1) {
+                                realizarVenta(
+                                    venta.productos,
+                                    venta.precio,
+                                    venta.cantidad,
+                                    venta.id,
+                                    venta.ventaCantidad
+                                )
+
+                            }
+                        } while (opcionSubMenu != 0)
+                    };
+                    if (opcion == 2) {
+                        do {
+
+                            //funcion de inventario
+                            consultarInventario(venta.productos, venta.cantidad);
+
+                            opcionSubMenu = readln()!!.toInt()
+                        } while (opcionSubMenu != 0)
+                    };
+                    if (opcion == 3) {
+
+
+                        //funcion para mostrar contraseñas
+                        mostrarContrasena(
+                            credenciales.adminContrasena,
+                            credenciales.adminUsuario,
+                            credenciales.vendedorContrasena,
+                            credenciales.vendedorUsuario
+                        );
+
 
                         opcionSubMenu = readln()!!.toInt()
 
-                        if (opcionSubMenu==1){
-                            realizarVenta(venta.productos,venta.precio,venta.cantidad,venta.id,venta.ventaCantidad)
+                        if (opcionSubMenu == 1) {
+                            println("Cambiar credenciales de Admin")
+                            println("Ingrese nuevo usuario")
+                            LecturaUsuario = readln()!!
+                            credenciales.adminUsuario = LecturaUsuario
+                            println("Ingrese nueva contraseña")
+                            LecturaContrasena = readln()!!
+                            credenciales.adminContrasena = LecturaContrasena
+
+                            println("Contraseña actualizada\n" + "Por favor, ingrese denuevo\n" + "10-Ok")
+                            opcionContrasena = readln().toInt()
 
                         }
-                    }while (opcionSubMenu!=0)
+
+
+                    }
+                } while (opcion != 4 && opcionContrasena != 10)
+
+            }
+        };if ( credenciales.vendedorUsuario == LecturaUsuario && credenciales.vendedorContrasena == LecturaContrasena){
+
+
+            do {
+                menuVendedor(credenciales.vendedorUsuario)
+                opcion = readln()!!.toInt()
+
+
+                if (opcion == 1) {
+                    do {
+
+                        //funcion de venta
+                        nuevaVenta(venta.productos, venta.precio);
+
+                        println("Menu\n" + "1. Realizar venta" + "\n0- Regresar")
+
+                        opcionSubMenu = readln()!!.toInt()
+
+                        if (opcionSubMenu == 1) {
+                            realizarVenta(
+                                venta.productos,
+                                venta.precio,
+                                venta.cantidad,
+                                venta.id,
+                                venta.ventaCantidad
+                            )
+
+                        }
+                    } while (opcionSubMenu != 0)
                 };
                 if (opcion == 2) {
                     do {
 
                         //funcion de inventario
-                       consultarInventario(venta.productos,venta.cantidad);
+                        consultarInventario(venta.productos, venta.cantidad);
 
                         opcionSubMenu = readln()!!.toInt()
-                    }while (opcionSubMenu!=0)
+                    } while (opcionSubMenu != 0)
                 };
-                if (opcion == 3) {
 
 
-                    //funcion para mostrar contraseñas
-                   mostrarContrasena(credenciales.adminContrasena,credenciales.adminUsuario,credenciales.vendedorContrasena,credenciales.vendedorUsuario);
 
 
-                    opcionSubMenu = readln()!!.toInt()
-
-                    if (opcionSubMenu == 1) {
-                        println("Cambiar credenciales de Admin")
-                        println("Ingrese nuevo usuario")
-                        LecturaUsuario = readln()!!
-                        credenciales.adminUsuario = LecturaUsuario
-                        println("Ingrese nueva contraseña")
-                        LecturaContrasena = readln()!!
-                        credenciales.adminContrasena = LecturaContrasena
-
-                        println("Contraseña actualizada\n" + "Por favor, ingrese denuevo\n" + "10-Ok")
-                        opcionContrasena = readln().toInt()
-
-                    }
+            }while (opcion !=3)
 
 
-                }
-            } while (opcion != 4 && opcionContrasena != 10)
 
         }
 
+        }while (opcion != 2)
+    }
 
-    }while (opcion != 2)
-}
 
