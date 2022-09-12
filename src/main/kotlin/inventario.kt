@@ -12,5 +12,5 @@ class inventario {
 
         println(producto+" - "+cantidad[i])
     }
-
+    println("0- Regresar")
 }

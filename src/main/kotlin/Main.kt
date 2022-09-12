@@ -120,7 +120,7 @@ fun main(args: Array<String>) {
                         //funcion de venta
                         nuevaVenta(venta.productos, venta.precio);
 
-                        println("Menu\n" + "1. Realizar venta" + "\n0- Regresar")
+
 
                         opcionSubMenu = readln()!!.toInt()
 
