@@ -8,7 +8,7 @@ class venta {
 
 
 }fun nuevaVenta(productos: List<String>, precio: List<Double>){
-    var j:Int = 1
+    var j = 1
     println("ID      Productos        Precio")
 
     for ((i, productos) in productos.withIndex()){
@@ -38,7 +38,7 @@ class venta {
         id = readln().toInt()
         id = (id - 1)
 
-        println(productos[id] + " Existen: " + cantidad[id] + " unidades de este producto, ¿cuánto desea vender?")
+        println(productos[id] + " Existen: " + cantidad[id] + " unidades de este producto, a $"+precio[id]+" por unidad, ¿cuánto desea vender?")
         ventaCantidad = readln().toInt()
 
         if (ventaCantidad > cantidad[id]) {

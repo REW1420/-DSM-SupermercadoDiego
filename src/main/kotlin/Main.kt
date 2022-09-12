@@ -1,21 +1,20 @@
 fun main(args: Array<String>) {
 
     //Variables
-    var opcion: Int = 0
-    var opcionSubMenu: Int = 0
+    var opcion : Int
+    var opcionSubMenu : Int
 
 
 
     //objeto de la clase
-    val credenciales = Login()
+    val credenciales = InicioSesion()
     val venta = venta()
-    var inventario = inventario()
 
     //Ciclo para el saludo y opcines iniciales
 
     do {
         println(
-            "Bienvenido al sistema Nombre Supermercado Diego\n"
+            "Bienvenido al sistema Supermercado Diego\n"
         )
         //funcion para el primer menu
         menuInicio();
@@ -26,18 +25,20 @@ fun main(args: Array<String>) {
 
 
                 println("Usuario: ")
-                credenciales.LecturaUsuario = readln()
+                credenciales.lecturaUsuario = readln()
                 println("Contraseña")
-                credenciales.LecturaContrasena = readln()
+                credenciales.lecturaContrasena = readln()
                 //se muentra un mensaje error por si la contraseña esta mal, si no lo esta entra el do/while del menu
 
-                if ((credenciales.adminUsuario != credenciales.LecturaUsuario || credenciales.adminContrasena != credenciales.LecturaContrasena) && (credenciales.vendedorUsuario != credenciales.LecturaUsuario && credenciales.vendedorContrasena != credenciales.LecturaContrasena) ) {
-                    println("Error en contraseña y/o usuario\n" + "Ingrese denuevo")
+                if ((credenciales.adminUsuario != credenciales.lecturaUsuario || credenciales.adminContrasena != credenciales.lecturaContrasena) && (credenciales.vendedorUsuario != credenciales.lecturaUsuario && credenciales.vendedorContrasena != credenciales.lecturaContrasena) && (credenciales.invitadoUsuario != credenciales.lecturaUsuario || credenciales.invitadoContrasena != credenciales.lecturaContrasena)) {
+                    error()
                 }
 
-            } while ( (credenciales.adminUsuario!= credenciales.LecturaUsuario && credenciales.adminContrasena != credenciales.LecturaContrasena) && (credenciales.vendedorUsuario != credenciales.LecturaUsuario && credenciales.vendedorContrasena != credenciales.LecturaContrasena))
+            } while ( (credenciales.adminUsuario!= credenciales.lecturaUsuario && credenciales.adminContrasena != credenciales.lecturaContrasena) && (credenciales.vendedorUsuario != credenciales.lecturaUsuario && credenciales.vendedorContrasena != credenciales.lecturaContrasena) &&  (credenciales.invitadoUsuario != credenciales.lecturaUsuario || credenciales.invitadoContrasena != credenciales.lecturaContrasena))
 
-            if (credenciales.adminUsuario == credenciales.LecturaUsuario && credenciales.adminContrasena == credenciales.LecturaContrasena) {
+            //TODO PARA ADMINISTRADOR INICIA AQUI ABAJO
+
+            if (credenciales.adminUsuario == credenciales.lecturaUsuario && credenciales.adminContrasena == credenciales.lecturaContrasena) {
 
                 do {
 
@@ -98,7 +99,7 @@ fun main(args: Array<String>) {
                         opcionSubMenu = readln().toInt()
 
                         if (opcionSubMenu == 1) {
-                           credenciales.cambiarContrasenaAdmin()
+                            credenciales.cambiarContrasenaAdmin()
                         };if (opcionSubMenu == 2){
                             credenciales.cambiarContrasenaVendedor()
                         };if (opcionSubMenu == 3){
@@ -111,10 +112,10 @@ fun main(args: Array<String>) {
 
             }
 
-            //AQUI ABAJO INICIA TODO PARA VENDEDOR
+            //TODO PARA VENDEDOR AQUI ABAJO INICIA
 
 
-        };if ( credenciales.vendedorUsuario == credenciales.LecturaUsuario && credenciales.vendedorContrasena == credenciales.LecturaContrasena){
+        };if ( credenciales.vendedorUsuario == credenciales.lecturaUsuario && credenciales.vendedorContrasena == credenciales.lecturaContrasena){
 
 
             do {
@@ -130,7 +131,7 @@ fun main(args: Array<String>) {
                         println("Menu\n" + "1. Realizar venta" + "\n2- Ver precios\n"+"0- Rgresar")
 
 
-                        opcionSubMenu = readln()!!.toInt()
+                        opcionSubMenu = readln().toInt()
 
                         if (opcionSubMenu == 1) {
                             realizarVenta(
@@ -163,11 +164,32 @@ fun main(args: Array<String>) {
             }while (opcion !=3)
 
 
+            //TODO PARA INVITADO INICIA AQUI ABAJO
+        };if (credenciales.invitadoUsuario == credenciales.lecturaUsuario && credenciales.invitadoContrasena == credenciales.lecturaContrasena){
+            do {
+                menuInvitado(credenciales.invitadoUsuario)
+                opcion = readln().toInt()
+
+
+
+
+                if (opcion == 1) {
+                    do {
+
+                        //funcion de inventario
+                        consultarInventario(venta.productos, venta.cantidad);
+
+                        opcionSubMenu = readln().toInt()
+                    } while (opcionSubMenu != 0)
+                };
+
+
+
+
+            }while (opcion !=0)
+
 
         }
 
-        }while (opcion != 2)
-    }
-
-
-//hola
+    }while (opcion != 2)
+}
