@@ -49,9 +49,10 @@ fun main(args: Array<String>) {
                         do {
 
                             //funcion de venta
-                            nuevaVenta(venta.productos, venta.precio);
 
-                            println("Menu\n" + "1. Realizar venta" + "\n0- Regresar")
+                            println("Menu\n" + "1. Realizar venta" + "\n2- Ver precios\n"+"0- Rgresar")
+
+
 
                             opcionSubMenu = readln().toInt()
 
@@ -64,6 +65,9 @@ fun main(args: Array<String>) {
                                     venta.ventaCantidad
                                 )
 
+                            };if (opcionSubMenu == 2){
+
+                                nuevaVenta(venta.productos, venta.precio);
                             }
                         } while (opcionSubMenu != 0)
                     };
@@ -159,3 +163,4 @@ fun main(args: Array<String>) {
     }
 
 
+//hola

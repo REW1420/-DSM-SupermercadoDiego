@@ -17,7 +17,8 @@ class venta {
         j++
     }
 
-    println("Menu\n" + "1. Realizar venta" + "\n0- Regresar")
+    println("Menu\n" + "1. Realizar venta" + "\n2- Ver precios\n"+"0- Rgresar")
+
 }fun realizarVenta(productos: List<String>, precio: List<Double>,cantidad: List<Int>,id:Int,ventaCantidad:Int){
     var id: Int=0
     var ventaCantidad: Int = 0
@@ -60,23 +61,31 @@ class venta {
         recivoTotal.add(total)
 
 
-        println("1. Agregar Producto"+" 2. Impair recibo"+" 3. Regresar");
+        println("1. Agregar Producto"+" 2. Imprimir recibo"+" 3. Regresar");
         opcion= readln().toInt()
 
         //imprecion del recivo
 
         if (opcion==2){
+
+            println("--------------------------------------------------------------------------------------------------")
             println("Producto   Cantidad   Precio")
 
 
             for ( (x, recivoCantidad) in recivoCantidad.withIndex()){
-
-                println(recivoProductos[x] +"          "+   recivoCantidad+"        "+   recivoTotal[x] )
+                    var c=0
+                c = x
+                c++
+                println("$c   "+recivoProductos[x] +"          "+   recivoCantidad+"        "+   recivoTotal[x] )
 
 
             }
-            println("Total a pagar: "+recivoTotal.sum())
+            println("Total a pagar: $"+recivoTotal.sum())
+            println("--------------------------------------------------------------------------------------------------")
+
+
             break
+
 
 
         }
