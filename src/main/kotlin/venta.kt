@@ -17,7 +17,7 @@ class venta {
         j++
     }
 
-    println("Menu\n" + "1. Realizar venta" + "\n2- Ver precios\n"+"0- Rgresar")
+
 
 }fun realizarVenta(productos: List<String>, precio: List<Double>,cantidad: List<Int>,id:Int,ventaCantidad:Int){
     var id: Int=0

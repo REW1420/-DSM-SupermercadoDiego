@@ -110,6 +110,10 @@ fun main(args: Array<String>) {
                 } while (opcion != 4 && credenciales.opcionContrasena != 10)
 
             }
+
+            //AQUI ABAJO INICIA TODO PARA VENDEDOR
+
+
         };if ( credenciales.vendedorUsuario == credenciales.LecturaUsuario && credenciales.vendedorContrasena == credenciales.LecturaContrasena){
 
 
@@ -122,8 +126,8 @@ fun main(args: Array<String>) {
                     do {
 
                         //funcion de venta
-                        nuevaVenta(venta.productos, venta.precio);
 
+                        println("Menu\n" + "1. Realizar venta" + "\n2- Ver precios\n"+"0- Rgresar")
 
 
                         opcionSubMenu = readln()!!.toInt()
@@ -137,6 +141,9 @@ fun main(args: Array<String>) {
                                 venta.ventaCantidad
                             )
 
+                        };if (opcionSubMenu == 2){
+
+                            nuevaVenta(venta.productos, venta.precio);
                         }
                     } while (opcionSubMenu != 0)
                 };
