@@ -15,8 +15,8 @@ class InicioSesion {
     var vendedorContrasena:String = "ve"
 
     //crednciales invitado
-    var invitadoUsuario:String = "in"
-    var invitadoContrasena:String = "in"
+    var invitadoUsuario:String = "i"
+    var invitadoContrasena:String = ""
 
 
     fun cambiarContrasenaAdmin(){

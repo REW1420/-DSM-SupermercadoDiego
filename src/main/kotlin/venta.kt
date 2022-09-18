@@ -69,19 +69,26 @@ class venta {
         if (opcion==2){
 
             println("--------------------------------------------------------------------------------------------------")
-            println("Producto   Cantidad   Precio")
+            println("      Producto                   Cantidad                     Precio")
 
 
             for ( (x, recivoCantidad) in recivoCantidad.withIndex()){
                     var c=0
                 c = x
                 c++
-                println("$c   "+recivoProductos[x] +"          "+   recivoCantidad+"        "+   recivoTotal[x] )
+                println("$c   "+recivoProductos[x] +"                 "+   recivoCantidad+"                 "+   recivoTotal[x] )
 
 
+            };if (recivoTotal.sum() > 20){
+                var precioDescuento = (recivoTotal.sum()*3)/100
+                println("Precio con 3% de descuento aplicado: $" + precioDescuento)
+                println("Total a pagar: $"+(recivoTotal.sum()-precioDescuento))
+                println("--------------------------------------------------------------------------------------------------")
+            }else{
+                println("Total a pagar: $"+recivoTotal.sum())
+                println("--------------------------------------------------------------------------------------------------")
             }
-            println("Total a pagar: $"+recivoTotal.sum())
-            println("--------------------------------------------------------------------------------------------------")
+
 
 
             break

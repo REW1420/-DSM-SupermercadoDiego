@@ -1,14 +1,16 @@
 fun main(args: Array<String>) {
 
     //Variables
-    var opcion : Int
-    var opcionSubMenu : Int
+
+
 
 
 
     //objeto de la clase
     val credenciales = InicioSesion()
     val venta = venta()
+    val op = menus()
+    val inv = inventario()
 
     //Ciclo para el saludo y opcines iniciales
 
@@ -18,9 +20,9 @@ fun main(args: Array<String>) {
         )
         //funcion para el primer menu
         menuInicio();
-        opcion = readln().toInt()
+        op.opcion = readln().toInt()
 
-        if (opcion == 1) {
+        if (op.opcion == 1) {
             do {
 
 
@@ -43,10 +45,10 @@ fun main(args: Array<String>) {
                 do {
 
                     menuPrincipal(credenciales.adminUsuario)
-                    opcion = readln().toInt()
+                    op.opcion = readln().toInt()
 
 
-                    if (opcion == 1) {
+                    if (op.opcion == 1) {
                         do {
 
                             //funcion de venta
@@ -55,9 +57,9 @@ fun main(args: Array<String>) {
 
 
 
-                            opcionSubMenu = readln().toInt()
+                            op.opcionSubMenu = readln().toInt()
 
-                            if (opcionSubMenu == 1) {
+                            if (op.opcionSubMenu == 1) {
                                 realizarVenta(
                                     venta.productos,
                                     venta.precio,
@@ -66,22 +68,22 @@ fun main(args: Array<String>) {
                                     venta.ventaCantidad
                                 )
 
-                            };if (opcionSubMenu == 2){
+                            };if (op.opcionSubMenu == 2){
 
                                 nuevaVenta(venta.productos, venta.precio);
                             }
-                        } while (opcionSubMenu != 0)
+                        } while (op.opcionSubMenu != 0)
                     };
-                    if (opcion == 2) {
+                    if (op.opcion == 2) {
                         do {
 
                             //funcion de inventario
-                            consultarInventario(venta.productos, venta.cantidad);
+                            inv.consultarInventario(venta.productos, venta.cantidad);
 
-                            opcionSubMenu = readln().toInt()
-                        } while (opcionSubMenu != 0)
+                            op.opcionSubMenu = readln().toInt()
+                        } while (op.opcionSubMenu != 0)
                     };
-                    if (opcion == 3) {
+                    if (op.opcion == 3) {
 
 
                         //funcion para mostrar contraseñas
@@ -96,19 +98,19 @@ fun main(args: Array<String>) {
                         );
 
 
-                        opcionSubMenu = readln().toInt()
+                        op.opcionSubMenu = readln().toInt()
 
-                        if (opcionSubMenu == 1) {
+                        if (op.opcionSubMenu == 1) {
                             credenciales.cambiarContrasenaAdmin()
-                        };if (opcionSubMenu == 2){
+                        };if (op.opcionSubMenu == 2){
                             credenciales.cambiarContrasenaVendedor()
-                        };if (opcionSubMenu == 3){
+                        };if (op.opcionSubMenu == 3){
                             credenciales.cambiarContrasenaInvitado()
                         }
 
 
                     }
-                } while (opcion != 4 && credenciales.opcionContrasena != 10)
+                } while (op.opcion != 4 && credenciales.opcionContrasena != 10)
 
             }
 
@@ -120,10 +122,10 @@ fun main(args: Array<String>) {
 
             do {
                 menuVendedor(credenciales.vendedorUsuario)
-                opcion = readln().toInt()
+                op.opcion = readln().toInt()
 
 
-                if (opcion == 1) {
+                if (op.opcion == 1) {
                     do {
 
                         //funcion de venta
@@ -131,9 +133,9 @@ fun main(args: Array<String>) {
                         println("Menu\n" + "1. Realizar venta" + "\n2- Ver precios\n"+"0- Rgresar")
 
 
-                        opcionSubMenu = readln().toInt()
+                        op.opcionSubMenu = readln().toInt()
 
-                        if (opcionSubMenu == 1) {
+                        if (op.opcionSubMenu == 1) {
                             realizarVenta(
                                 venta.productos,
                                 venta.precio,
@@ -142,54 +144,70 @@ fun main(args: Array<String>) {
                                 venta.ventaCantidad
                             )
 
-                        };if (opcionSubMenu == 2){
+                        };if (op.opcionSubMenu == 2){
 
                             nuevaVenta(venta.productos, venta.precio);
                         }
-                    } while (opcionSubMenu != 0)
+                    } while (op.opcionSubMenu != 0)
                 };
-                if (opcion == 2) {
+                if (op.opcion == 2) {
                     do {
 
                         //funcion de inventario
-                        consultarInventario(venta.productos, venta.cantidad);
+                        inv.consultarInventario(venta.productos, venta.cantidad);
 
-                        opcionSubMenu = readln().toInt()
-                    } while (opcionSubMenu != 0)
+                        op.opcionSubMenu = readln().toInt()
+                    } while (op.opcionSubMenu != 0)
                 };
 
 
 
 
-            }while (opcion !=3)
+            }while (op.opcion !=3)
 
 
             //TODO PARA INVITADO INICIA AQUI ABAJO
         };if (credenciales.invitadoUsuario == credenciales.lecturaUsuario && credenciales.invitadoContrasena == credenciales.lecturaContrasena){
             do {
                 menuInvitado(credenciales.invitadoUsuario)
-                opcion = readln().toInt()
+                op.opcion = readln().toInt()
 
 
 
 
-                if (opcion == 1) {
+                if (op.opcion == 1) {
                     do {
 
                         //funcion de inventario
-                        consultarInventario(venta.productos, venta.cantidad);
+                        busquedaInventario()
+                        op.opcionSubMenu = readln().toInt()
 
-                        opcionSubMenu = readln().toInt()
-                    } while (opcionSubMenu != 0)
+                        if (op.opcionSubMenu==1){
+
+                            do {
+                                inv.busquedaPorNombre(venta.productos, venta.cantidad)
+                                op.opcionInv = readln().toInt()
+                            }while (op.opcionInv !=2)
+                        };if (op.opcionSubMenu==2){
+
+                            do {
+
+
+                                inv.busquedaPorID()
+
+                                op.opcionInv = readln().toInt()
+                            }while (op.opcionInv !=2)
+                        }
+                    } while (op.opcionSubMenu != 0)
                 };
 
 
 
 
-            }while (opcion !=0)
+            }while (op.opcion !=0)
 
 
         }
 
-    }while (opcion != 2)
+    }while (op.opcion != 2)
 }

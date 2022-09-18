@@ -1,5 +1,7 @@
 class menus {
-
+    var opcion : Int = 0
+    var opcionSubMenu : Int = 0
+    var opcionInv = 0
     var credenciales = InicioSesion()
     var adminUsuario = credenciales.adminUsuario
     var vendedorUsuario = credenciales.vendedorUsuario
@@ -14,4 +16,6 @@ class menus {
     println("Bienvenido " + invitadoUsuario + " \n" + "¿Qué desea hacer?\n" + "1.Consultar inventario \n" + "0.Cerrar sesion")
 }fun error(){
     println("Error en contraseña y/o usuario\n" + "Ingrese denuevo")
+}fun busquedaInventario(){
+    println("Escoja como buscar\n"+"1. Por nombre\n"+"2. Por ID\n"+"0. Regresar")
 }
