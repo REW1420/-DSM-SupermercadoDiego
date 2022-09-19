@@ -7,16 +7,16 @@ class InicioSesion {
     var opcionContrasena: Int = 0
 
     //Credenciales Admin
-    var adminUsuario :String = ""
-    var adminContrasena :String = ""
+    var adminUsuario :String = "admin"
+    var adminContrasena :String = "admin123"
 
     //Credenciales Vendedor
-    var vendedorUsuario:String = "ve"
-    var vendedorContrasena:String = "ve"
+    var vendedorUsuario:String = "vendedor"
+    var vendedorContrasena:String = "vendedor123"
 
     //crednciales invitado
-    var invitadoUsuario:String = "i"
-    var invitadoContrasena:String = ""
+    var invitadoUsuario:String = "invitado"
+    var invitadoContrasena:String = "invitado123"
 
 //TODO LO DE CAMBIAR O CONTRASEÑAS Y REFERENTES ESTA AQUI
     fun cambiarContrasenaAdmin(){
