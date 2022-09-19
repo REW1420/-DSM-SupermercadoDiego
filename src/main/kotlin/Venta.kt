@@ -1,4 +1,4 @@
-class venta {
+class Venta {
 
     var productos: MutableList<String> = mutableListOf("dulce","queso procesado","jamon","arroz","jabon unidad","mentas","requeson","salchichas","gel cabello","detergente")
     var precio: MutableList<Double> = mutableListOf(0.10,5.00,3.00,0.50,0.80,0.30,2.25,2.75,1.80,3.25)
@@ -8,6 +8,7 @@ class venta {
 
 
 }fun nuevaVenta(productos: List<String>, precio: List<Double>){
+    //funcion para la venta imprime todo
     var j = 1
     println("ID      Productos        Precio")
 
@@ -28,9 +29,9 @@ class venta {
 
 
     //listas para el recivo
-    var recivoProductos: MutableList<String> = mutableListOf()
-    var recivoCantidad: MutableList<Int> = mutableListOf()
-    var recivoTotal: MutableList<Double> = mutableListOf()
+    val recivoProductos: MutableList<String> = mutableListOf()
+    val recivoCantidad: MutableList<Int> = mutableListOf()
+    val recivoTotal: MutableList<Double> = mutableListOf()
 
     do {
 
@@ -73,7 +74,7 @@ class venta {
 
 
             for ( (x, recivoCantidad) in recivoCantidad.withIndex()){
-                    var c=0
+                    var c: Int
                 c = x
                 c++
                 println("$c   "+recivoProductos[x] +"                 "+   recivoCantidad+"                 "+   recivoTotal[x] )

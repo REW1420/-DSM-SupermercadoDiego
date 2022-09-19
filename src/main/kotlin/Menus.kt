@@ -1,11 +1,13 @@
-class menus {
+class Menus {
     var opcion : Int = 0
-    var opcionSubMenu : Int = 0
+    var opcionInicial = 0
+    var opcionAdmin : Int = 0
     var opcionInv = 0
-    var credenciales = InicioSesion()
-    var adminUsuario = credenciales.adminUsuario
-    var vendedorUsuario = credenciales.vendedorUsuario
-    var invitadoUsuario = credenciales.invitadoUsuario
+    var opcioninventario = 0
+    var opcionVen = 0
+
+
+    //TODOS LOS MENUS CON OPCIONES SEESCUENTRAN AQUI Y LAS VARIABLES DE OPCIONES IGUAL
 }fun menuInicio(){
     println("Menu\n" + "1. Iniciar sesion\n" + "2. Cerrar programa")
 }fun menuPrincipal(adminUsuario:String){
@@ -13,9 +15,16 @@ class menus {
 }fun menuVendedor(vendedorUsuario:String){
     println("Bienvenido " + vendedorUsuario + " \n" + "¿Qué desea hacer?\n" + "1.Venta nueva \n" + "2.Consultar inventario\n" + "3.Cerrar sesion")
 }fun menuInvitado(invitadoUsuario:String){
-    println("Bienvenido " + invitadoUsuario + " \n" + "¿Qué desea hacer?\n" + "1.Consultar inventario \n" + "0.Cerrar sesion")
+    println("Bienvenido " + invitadoUsuario + " \n" + "¿Qué desea hacer?\n" + "1.Consultar inventario \n" + "2.Cerrar sesion")
 }fun error(){
     println("Error en contraseña y/o usuario\n" + "Ingrese denuevo")
 }fun busquedaInventario(){
     println("Escoja como buscar\n"+"1. Por nombre\n"+"2. Por ID\n"+"0. Regresar")
+}fun saludo(){
+    println(
+        "Bienvenido al sistema Supermercado Diego\n"
+    )
+}fun opciones(){
+    println("1-Volver a verder\n" + "0-Regresar")
+
 }
