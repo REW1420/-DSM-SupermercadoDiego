@@ -79,3 +79,5 @@ class Inventario {
         println("1- Buscar denuevo\n"+"2. Regresar")
     }
 }
+
+//1
