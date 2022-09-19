@@ -18,7 +18,7 @@ class InicioSesion {
     var invitadoUsuario:String = "invitado"
     var invitadoContrasena:String = "invitado123"
 
-
+//TODO LO DE CAMBIAR O CONTRASEÑAS Y REFERENTES ESTA AQUI
     fun cambiarContrasenaAdmin(){
         println("Cambiar credenciales de Admin")
         println("Ingrese nuevo usuario")
@@ -52,6 +52,11 @@ class InicioSesion {
 
         println("Contraseña actualizada\n" + "Por favor, ingrese denuevo\n" + "10-Ok")
         opcionContrasena = readln().toInt()
+    } fun inicioDeSesion(){
+        println("Usuario: ")
+        lecturaUsuario = readln()
+        println("Contraseña")
+        lecturaContrasena = readln()
     }
 
 
@@ -66,3 +71,4 @@ class InicioSesion {
 }
 
 
+//2
